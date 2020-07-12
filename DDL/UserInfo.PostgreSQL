@@ -1,0 +1,24 @@
+-- Table: tndx.UserInfo
+
+-- DROP TABLE tndx."UserInfo";
+
+CREATE TABLE tndx."UserInfo"
+(
+    id smallint NOT NULL,
+    name integer NOT NULL,
+    mail character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    pswd character varying(50) COLLATE pg_catalog."default",
+    last_login timestamp without time zone,
+    update_user character(20) COLLATE pg_catalog."default" NOT NULL,
+    del_flg smallint,
+    update_datetime timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT userinfo_pkey PRIMARY KEY (id),
+    CONSTRAINT userinfo_mail_key UNIQUE (mail)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE tndx."UserInfo"
+    OWNER to postgres;

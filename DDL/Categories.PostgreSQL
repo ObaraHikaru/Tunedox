@@ -1,0 +1,23 @@
+-- Table: tndx.Categories
+
+-- DROP TABLE tndx."Categories";
+
+CREATE TABLE tndx."Categories"
+(
+    id integer NOT NULL,
+    category character varying(40) COLLATE pg_catalog."default" NOT NULL,
+    subcategory character varying(40) COLLATE pg_catalog."default" NOT NULL,
+    update_user character(20) COLLATE pg_catalog."default" NOT NULL,
+    del_flg smallint,
+    update_datetime timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT categories_pkey PRIMARY KEY (id),
+    CONSTRAINT categories_category_key UNIQUE (category),
+    CONSTRAINT categories_subcategory_key UNIQUE (subcategory)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE tndx."Categories"
+    OWNER to postgres;

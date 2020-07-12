@@ -1,0 +1,37 @@
+-- Table: tndx.Estimation
+
+-- DROP TABLE tndx."Estimation";
+
+CREATE TABLE tndx."Estimation"
+(
+    id integer NOT NULL,
+    user_id integer,
+    book_id integer,
+    estimation integer,
+    comment character varying(300) COLLATE pg_catalog."default",
+    category_id integer,
+    status integer,
+    update_user character(20) COLLATE pg_catalog."default" NOT NULL,
+    del_flg smallint,
+    update_datetime timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT estimation_pkey PRIMARY KEY (id),
+    CONSTRAINT estimation_book_id_fkey FOREIGN KEY (book_id)
+        REFERENCES tndx."BookInfo" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT estimation_category_id_fkey FOREIGN KEY (category_id)
+        REFERENCES tndx."Categories" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT estimation_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES tndx."UserInfo" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE tndx."Estimation"
+    OWNER to postgres;

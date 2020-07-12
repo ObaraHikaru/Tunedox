@@ -1,0 +1,28 @@
+-- Table: tndx.BookInfo
+-- DROP TABLE tndx."BookInfo";
+
+CREATE TABLE tndx."BookInfo"
+(
+    id integer NOT NULL,
+    isbn_code integer,
+    name character(200) COLLATE pg_catalog."default" NOT NULL,
+    author character(200) COLLATE pg_catalog."default",
+    publisher character(200) COLLATE pg_catalog."default",
+    price integer,
+    update_user character(20) COLLATE pg_catalog."default" NOT NULL,
+    del_flg smallint,
+    category_id integer,
+    update_datetime timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "BookInfo_pkey" PRIMARY KEY (id),
+    CONSTRAINT bookinfo_category_id_fkey FOREIGN KEY (category_id)
+        REFERENCES tndx."Categories" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE tndx."BookInfo"
+    OWNER to postgres;

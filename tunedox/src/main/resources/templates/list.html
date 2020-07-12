@@ -11,6 +11,7 @@
 <body>
   <div>
     <table>
+
       <tr>
         <td>
           <input type="checkbox">
@@ -20,11 +21,120 @@
           <input type="text">
         </td>
         <td>
-          <input type="radio" name="title_search" value="0"　checked="checked">一致
+          <input type="radio" name="title_search" value="0" checked="checked">一致
           <input type="radio" name="title_search" value="1">含む
         </td>
-
       </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>著者</td>
+        <td>
+          <input type="text">
+        </td>
+        <td>
+          <input type="radio" name="author_search" value="0" checked="checked">一致
+          <input type="radio" name="author_search" value="1">含む
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>出版社</td>
+        <td>
+          <input type="text">
+        </td>
+        <td>
+          <input type="radio" name="publisher_search" value="0" checked="checked">一致
+          <input type="radio"  name="publisher_search" value="1">含む
+        </td>
+      </tr>
+
+      <tr>
+        <td>定価</td>
+        <td>
+          <input type="number">
+          <label>～</label>
+          <input type="number">
+        </td>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>評価</td>
+        <td>
+          <input type="number" step="1" min="0" max="100">点以上
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>大分類</td>
+        <td>
+          <input type="text">
+        </td>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>中分類</td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checked">
+        </td>
+        <td>状態</td>
+        <td>
+          <input type="radio" name="progress_search" value="0" checked="checked">全て
+          <input type="radio" name="progress_search" value="1">読了
+          <input type="radio" name="progress_search" value="2">読みかけ
+          <input type="radio" name="progress_search" value="3">未読
+        </td>
+        <td>
+          <input type="submit" name="submit" value="検索">
+        </td>
+      </tr>
+
     </table>
+
+  </div>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>タイトル</th>
+          <th>著者</th>
+          <th>出版社</th>
+          <th>定価</th>
+          <th>大分類</th>
+          <th>中分類</th>
+          <th>評価</th>
+          <th>状態</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <td>test</td>
+          <button type="button" name="button">詳細</button>
+          <button type="button" name="button">削除</button>
+        </tr>
+      </tbody>
   </div>
 </body>
