@@ -1,4 +1,6 @@
-public class UserInfo extends Common{
+package dto;
+
+public class UserInfoDto extends Common{
 
   private int id;
   private int name;
@@ -6,8 +8,8 @@ public class UserInfo extends Common{
   private String pswd;
   private String last_login;
 
-  public UserInfo(int id,int name,String mail,String pswd,String last_login) {
-    super(String datetime,String user,int flg);
+  public UserInfoDto(int id, int name, String mail, String pswd, String last_login) {
+    super(String datetime, String user, int flg);
     this.id = id;
     this.name = name;
     this.mail = mail;
