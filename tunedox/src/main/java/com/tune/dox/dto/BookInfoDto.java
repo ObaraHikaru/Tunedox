@@ -1,4 +1,6 @@
-public class BookInfo extends Common {
+package dto;
+
+public class BookInfoDto extends Common {
 
   private int id;
   private int isbn_code;

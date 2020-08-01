@@ -36,7 +36,8 @@ public class UserInfoDao {
     sb.append("pswd=? ");
     //コネクションをする
     UserInfoDto returnUser = new UserInfoDto();
-    try(con = DriverManager.getConnection()) {
+    //getConnectionに引数が必要かもしれない↓
+    try (con = DriverManager.getConnection()) {
 
       ps = con.prepareStatement(sb.toString());
       ps.setString(1, mail);
@@ -44,22 +45,48 @@ public class UserInfoDao {
 
       rslt = ps.executeQuery();
 
-      if(rslt.next()) {
-        returnUser.setId(rslt.getInt("id"));
-        returnUser.setName(rstl.getInt("name"));
-        returnUser.setMail(rstl.getString("mail"));
-        returnUser.setPswd(rstl.getString("pswd"));
-        returnUser.setLastLogin(rstl.getString("last_login"));
-        returnUser.setUpdateDatetime(rstl.getString("update_datetime"));
-        returnUser.setUpdateUser(rstl.getString("update_user"));
-        returnUser.setDelFlg(rstl.getInt("del_flg"));
+      if (rslt.next()) {
+        //returnUser.setId(rslt.getInt("id"));
+      //  returnUser.setName(rslt.getInt("name"));
+        returnUser.setMail(rslt.getString("mail"));
+        returnUser.setPswd(rslt.getString("pswd"));
+        //returnUser.setLastLogin(rslt.getString("last_login"));
+        //returnUser.setUpdateDatetime(rslt.getString("update_datetime"));
+        //returnUser.setUpdateUser(rslt.getString("update_user"));
+        //returnUser.setDelFlg(rslt.getInt("del_flg"));
       } else {
         return null;
       }
-    } catch(SQLException e) {
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
+    } finally {
+      if (rslt != null) {
+        try {
+          rslt.close();
+        } catch (SQLExeption e) {
+          e.printStackTrace();
+        }
+        rslt = null;
+      }
+      if (ps != null) {
+        try {
+          ps.close();
+        } catch (SQLExeption e) {
+          e.printStackTrace();
+        }
+        ps = null;
+      }
+      if (con != null) {
+        try {
+          con.close();
+        } catch (SQLExeption e) {
+          e.printStackTrace();
+        }
+        con = null;
+      }
     }
+
     return returnUser;
     //ステートメントクラスを生成
     //リザルトセットクラスの生成

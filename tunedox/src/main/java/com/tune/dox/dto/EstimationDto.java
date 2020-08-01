@@ -1,4 +1,4 @@
-public class Estimation extends Common {
+public class EstimationDto extends Common {
 
   private int id;
   private int user_id;
@@ -10,7 +10,7 @@ public class Estimation extends Common {
 
 
 
-  public Estimation(int id,int user_id,int book_id,int estimation,String comment,
+  public EstimationDto(int id,int user_id,int book_id,int estimation,String comment,
                     int category_id,int status) {
     super(String datetime,String user,int flg);
     this.id = id;
