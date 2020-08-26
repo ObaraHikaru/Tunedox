@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <form action="index.jsp" method="post">
+  <form action="/Login" method="post">
 
 	  <div class="login">
 	    <div>
