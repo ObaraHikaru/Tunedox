@@ -1,9 +1,13 @@
-import Dto.BookInfoDto;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
+package com.tune.dox.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.tune.dox.dto.BookInfoDto;
 /**
 * 書籍情報管理用DAO
 * @author Obara
@@ -38,16 +42,16 @@ public class BookInfoDao {
     sb.append("price,");
     sb.append("category_id");
 
-    ArayList<BookInfoDto> bookList = new ArrayList<BookInfoDto>;
+    ArrayList<BookInfoDto> bookList = new ArrayList<BookInfoDto>();
 
-    try (con = DriverManager.getConnection()) {
+    try (Connection con = DriverManager.getConnection(null)) {
 
       ps = con.prepareStatement(sb.toString());
 
-      rlst = ps.exexuteQuery();
+      rslt = ps.executeQuery();
 
       while (rslt.next()) {
-        BookInfoDto returnBook = new BookInfoDto();
+        BookInfoDto returnBook = new BookInfoDto(0,0,null,null,null,0,0,null,null,0);
         returnBook.setId(rslt.getInt("id"));
         returnBook.setIsbnCode(rslt.getInt("isbn_code"));
         returnBook.setName(rslt.getString("name"));
@@ -62,14 +66,14 @@ public class BookInfoDao {
         bookList.add(returnBook);
       }
 
-    } catch (SQLExeption e) {
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
     } finally {
       if (rslt != null) {
         try {
           rslt.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         rslt = null;
@@ -77,7 +81,7 @@ public class BookInfoDao {
       if (ps != null) {
         try {
           ps.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         ps = null;
@@ -85,7 +89,7 @@ public class BookInfoDao {
       if (con != null) {
         try {
           con.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         con = null;

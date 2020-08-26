@@ -1,6 +1,6 @@
-package dto;
+package com.tune.dox.dto;
 
-public class BookInfoDto extends Common {
+public class BookInfoDto extends CommonDto {
 
   private int id;
   private int isbn_code;
@@ -10,9 +10,9 @@ public class BookInfoDto extends Common {
   private int price;
   private int category_id;
 
-  public BookInfo(int id,int isbn_code,String name,String author,String publisher,
-                  int price,int category_id) {
-    super(String datetime,String user,int flg);
+  public BookInfoDto(int id,int isbn_code,String name,String author,String publisher,
+                  int price,int category_id,String datetime,String user,int flg) {
+    super(datetime,user,flg);
     this.id = id;
     this.isbn_code = isbn_code;
     this.name = name;

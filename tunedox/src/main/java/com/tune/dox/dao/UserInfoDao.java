@@ -1,9 +1,12 @@
-import dto.UserInfoDto;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
+package com.tune.dox.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.tune.dox.dto.UserInfoDto;
 /**
 * ログイン用DAO
 * @author Obara
@@ -35,9 +38,10 @@ public class UserInfoDao {
     sb.append("and ");
     sb.append("pswd=? ");
     //コネクションをする
-    UserInfoDto returnUser = new UserInfoDto();
+    UserInfoDto returnUser = new UserInfoDto(0, 0, pswd, pswd, pswd, pswd, pswd,
+    		 0);
     //getConnectionに引数が必要かもしれない↓
-    try (con = DriverManager.getConnection()) {
+    try (Connection con = DriverManager.getConnection(null)) {
 
       ps = con.prepareStatement(sb.toString());
       ps.setString(1, mail);
@@ -64,7 +68,7 @@ public class UserInfoDao {
       if (rslt != null) {
         try {
           rslt.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         rslt = null;
@@ -72,7 +76,7 @@ public class UserInfoDao {
       if (ps != null) {
         try {
           ps.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         ps = null;
@@ -80,7 +84,7 @@ public class UserInfoDao {
       if (con != null) {
         try {
           con.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         con = null;

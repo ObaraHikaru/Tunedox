@@ -1,4 +1,6 @@
-public class EstimationDto extends Common {
+package com.tune.dox.dto;
+
+public class EstimationDto extends CommonDto {
 
   private int id;
   private int user_id;
@@ -11,8 +13,8 @@ public class EstimationDto extends Common {
 
 
   public EstimationDto(int id,int user_id,int book_id,int estimation,String comment,
-                    int category_id,int status) {
-    super(String datetime,String user,int flg);
+                    int category_id,int status,String datetime,String user,int flg) {
+    super(datetime,user,flg);
     this.id = id;
     this.user_id = user_id;
     this.book_id = book_id;

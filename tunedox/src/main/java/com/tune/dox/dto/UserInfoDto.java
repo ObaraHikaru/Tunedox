@@ -1,6 +1,6 @@
-package dto;
+package com.tune.dox.dto;
 
-public class UserInfoDto extends Common{
+public class UserInfoDto extends CommonDto {
 
   private int id;
   private int name;
@@ -8,8 +8,9 @@ public class UserInfoDto extends Common{
   private String pswd;
   private String last_login;
 
-  public UserInfoDto(int id, int name, String mail, String pswd, String last_login) {
-    super(String datetime, String user, int flg);
+  public UserInfoDto(int id, int name, String mail, String pswd, String last_login,
+		  			  String datetime,String user,int flg) {
+    super(datetime,user,flg);
     this.id = id;
     this.name = name;
     this.mail = mail;

@@ -1,16 +1,20 @@
-import dto.EstimationDto;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
+package com.tune.dox.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.tune.dox.dto.EstimationDto;
 /**
 * ユーザ別書籍マスタ用DAO
 * @author Obara
 * @since 0.1
 */
 public class EstimationDao {
-  private Connestion con = null;
+  private Connection con = null;
   private PreparedStatement ps = null;
   private ResultSet rslt = null;
 
@@ -38,16 +42,16 @@ public class EstimationDao {
     sb.append("category_id");
     sb.append("status");
 
-    ArrayList<EstimationDto> estimationList = new ArrayList<EstimationDto>;
+    ArrayList<EstimationDto> estimationList = new ArrayList<EstimationDto>();
 
-    try (con = DriverManager.getConnection()) {
+    try (Connection con = DriverManager.getConnection(null)) {
 
       ps = con.prepareStatement(sb.toString());
 
-      rslt = ps.exexuteQuery();
+      rslt = ps.executeQuery();
 
       while (rslt.next()) {
-        EstimationDto returnEstimation = new EstimationDto();
+        EstimationDto returnEstimation = new EstimationDto(0,0,0,0,null,0,0,null,null,0);
         returnEstimation.setId(rslt.getInt("id"));
         returnEstimation.setUserId(rslt.getInt("user_id"));
         returnEstimation.setBookId(rslt.getInt("book_id"));
@@ -55,21 +59,21 @@ public class EstimationDao {
         returnEstimation.setComment(rslt.getString("comment"));
         returnEstimation.setCategoryId(rslt.getInt("category_id"));
         returnEstimation.setStatus(rslt.getInt("status"));
-        returnBook.setUpdateDatetime(rslt.getString("update_datetime"));
-        returnBook.setUpdateUser(rslt.getString("update_user"));
-        returnBook.setDelFlg(rslt.getInt("del_flg"));
+        returnEstimation.setUpdateDatetime(rslt.getString("update_datetime"));
+        returnEstimation.setUpdateUser(rslt.getString("update_user"));
+        returnEstimation.setDelFlg(rslt.getInt("del_flg"));
 
         estimationList.add(returnEstimation);
       }
 
-    } catch (SQLExeption e) {
+    } catch (SQLException e) {
       e.printStackTrace();
       return null;
     } finally {
       if (rslt != null) {
         try {
           rslt.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         rslt = null;
@@ -77,7 +81,7 @@ public class EstimationDao {
       if (ps != null) {
         try {
           ps.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         ps = null;
@@ -85,7 +89,7 @@ public class EstimationDao {
       if (con != null) {
         try {
           con.close();
-        } catch (SQLExeption e) {
+        } catch (SQLException e) {
           e.printStackTrace();
         }
         con = null;
